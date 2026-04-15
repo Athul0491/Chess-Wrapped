@@ -27,7 +27,7 @@ export function analyzeGameStats(
         // Count wins, losses, draws
         if (result === 'win') {
             wins++;
-        } else if (['repetition', 'stalemate', 'insufficient', 'agreed', 'time', '50move'].includes(result)) {
+        } else if (result == 'draw'||['repetition', 'stalemate', 'insufficient', 'agreed', 'time', '50move'].includes(result)) {
             draws++;
         } else {
             losses++;

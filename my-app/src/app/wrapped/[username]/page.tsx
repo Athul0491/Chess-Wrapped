@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { generateWrappedStats } from '@/lib/chess';
+import { generateWrappedStats } from '@/lib/wrapped';
 import Carousel from '@/components/organisms/Carousel';
 import { ChessProvider } from '@/context/ChessContext';
 import { NoGamesState } from '@/components/wrapped/no-games-state';
@@ -29,7 +29,7 @@ export default async function UserWrappedPage({ params }: PageProps) {
         const username = validateAndSanitizeUsername(rawUsername);
 
         // Generate stats
-        const stats = await generateWrappedStats(username);
+        const stats = await generateWrappedStats(username, 'lichess');
 
         // Check for empty stats
         if (!stats || stats.totalGames === 0) {

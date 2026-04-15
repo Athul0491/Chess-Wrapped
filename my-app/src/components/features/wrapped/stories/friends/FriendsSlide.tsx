@@ -69,7 +69,7 @@ const PodiumItem = ({ friend, rank, color, className, size }: any) => {
             {/* Avatar */}
             <div className="relative mb-2">
                 <img
-                    src={friend.avatarUrl}
+                    src={`https://www.chess.com/bundles/web/images/user-image.svg`}
                     alt={friend.username}
                     style={{ width: size, height: size, borderColor: color }}
                     className="rounded-full object-cover border-4 shadow-lg bg-[#262421]"
@@ -119,7 +119,7 @@ export default function FriendsSlide() {
                 <motion.div variants={itemVariants} className="w-full flex justify-start items-center px-4 mb-2 z-10">
                     <div className="p-1 bg-white rounded-full shadow-lg mr-3">
                         <img
-                            src={data.avatarUrl}
+                            src={`https://www.chess.com/bundles/web/images/user-image.svg`}
                             alt={data.username}
                             className="w-12 h-12 rounded-full object-cover border-2 border-[#81b64c]"
                         />
@@ -184,7 +184,7 @@ export default function FriendsSlide() {
                                     <span className="text-[#989795] font-black text-xs w-5 text-center shrink-0">#{idx + 4}</span>
 
                                     <img
-                                        src={friend.avatarUrl}
+                                        src={`https://www.chess.com/bundles/web/images/user-image.svg`}
                                         alt={friend.username}
                                         className="w-8 h-8 rounded-full border border-[#3e3c39] object-cover bg-black/20 shrink-0"
                                         onError={(e) => { (e.target as HTMLImageElement).src = "https://www.chess.com/bundles/web/images/user-image.svg"; }}

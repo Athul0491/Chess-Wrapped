@@ -6,7 +6,7 @@ import { generateDefaultMetadata } from '@/lib/utils/metadata-utils';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata: Metadata = generateDefaultMetadata();
+// export const metadata: Metadata = generateDefaultMetadata();
 
 export default function RootLayout({
     children,
@@ -14,7 +14,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body className={`${inter.className} bg-[#211f1c] text-white antialiased`}>
                 <AppProviders>{children}</AppProviders>
             </body>

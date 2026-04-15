@@ -22,7 +22,7 @@ export function analyzeOpenings(games: ChessGame[], username: string) {
         if (result === 'win') {
             record[name].wins += 1;
             if (elo > record[name].highestElo) record[name].highestElo = elo;
-        } else if (['repetition', 'stalemate', 'insufficient', 'agreed', 'time', '50move'].includes(result)) {
+        } else if (result==='draw'||['repetition', 'stalemate', 'insufficient', 'agreed', 'time', '50move'].includes(result)) {
             record[name].draws += 1;
         } else {
             record[name].losses += 1;

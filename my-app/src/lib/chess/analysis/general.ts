@@ -59,7 +59,7 @@ export function analyzeGeneral(games: ChessGame[], username: string) {
                 };
                 highlightTracker.updateFastestWin(speedData);
             }
-        } else if (['repetition', 'stalemate', 'insufficient', 'agreed', 'time', '50move'].includes(result)) {
+        } else if (result == 'draw'||['repetition', 'stalemate', 'insufficient', 'agreed', 'time', '50move'].includes(result)) {
             streakTracker.recordDraw();
         } else {
             streakTracker.recordLoss();
@@ -86,7 +86,7 @@ export function analyzeGeneral(games: ChessGame[], username: string) {
     const timeStats = analyzeTime(games);
     const variantStats = analyzeVariants(games);
     const highlights = highlightTracker.getHighlights();
-
+    console.log(timeStats.totalHours);
     // Aggregate and return results
     return {
         totalGames: games.length,

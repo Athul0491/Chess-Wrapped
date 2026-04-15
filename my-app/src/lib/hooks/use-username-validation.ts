@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ChessValidationService } from '@/lib/services/chess-validation-service';
 import { useRateLimit } from './use-rate-limit';
+import { LichessValidationService } from '@/lib/services/lichess-validation-service';
 
 interface UseUsernameValidationReturn {
     username: string;
@@ -20,10 +20,11 @@ export function useUsernameValidation(): UseUsernameValidationReturn {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    // Rate-limited validation (2 second cooldown, max 5 attempts)
+    // 🔥 Lichess validation only
     const rateLimitedValidate = useRateLimit(
-        (username: string, year?: number) => ChessValidationService.validateComplete(username, year),
-        { delayMs: 2000, maxAttempts: 5 }
+        (username: string, year?: number) =>
+            LichessValidationService.validateComplete(username, year),
+        { delayMs: 2000, maxAttempts: 50 }
     );
 
     const handleSubmit = async () => {
@@ -36,21 +37,14 @@ export function useUsernameValidation(): UseUsernameValidationReturn {
             const result = await rateLimitedValidate(username.trim());
 
             if (result.valid) {
-                // Navigate to wrapped page
                 router.push(`/wrapped/${encodeURIComponent(result.username!)}`);
             } else {
-                // Show error
                 setIsLoading(false);
                 setError(result.error || 'Something went wrong');
             }
         } catch (error) {
-            // Handle rate limit errors
             setIsLoading(false);
-            if (error instanceof Error) {
-                setError(error.message);
-            } else {
-                setError('Please wait before trying again');
-            }
+            setError(error instanceof Error ? error.message : 'Please wait before trying again');
         }
     };
 
