@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Shield, Lightbulb, Zap, Mail, UserPlus, Menu, Instagram, ExternalLink, Star, Github, Volume2, VolumeX, ChessKing } from 'lucide-react';
-import { useSound } from '@/context/SoundContext'; // 👇 Import the new hook
+import { useSound } from '@/context/SoundContext';
 
 // --- 1. MODAL CONTENT DEFINITIONS ---
 type ModalContentKey = 'none' | 'guide' | 'features' | 'legal';
@@ -16,9 +16,9 @@ const MODAL_CONTENT = {
         color: 'text-[#81b64c]',
         body: (
             <div className="space-y-4">
-                <p>1. Type your chess.com username.</p>
+                <p>1. Type your Lichess username.</p>
                 <p>2. Click START! or press Enter.</p>
-                <p>3. Don't have an account? bro just make one :b</p>
+                <p>3. No account yet? Make one on Lichess and play a few games.</p>
             </div>
         )
     },
@@ -28,7 +28,7 @@ const MODAL_CONTENT = {
         color: 'text-[#ffc800]',
         body: (
             <div className="space-y-4">
-                <p>It's a year wrap for chess (inspired by Spotify Wrapped). It showcases your chess journey in 2025</p>
+                <p>It is a year wrap for chess inspired by Spotify Wrapped. It showcases your Lichess journey in 2025.</p>
                 <p className="font-bold text-[#ffc800]">NO SPOILERS HERE {'>'}:)</p>
             </div>
         )
@@ -44,14 +44,14 @@ const MODAL_CONTENT = {
                         <Mail size={16} /> Contact Us
                     </h4>
                     <p className="mb-2">For support, bug reports, or inquiries, please contact me:</p>
-                    <a href="mailto:huynhmaithienan.2005@gmail.com" className="text-[#ffc800] hover:underline font-bold break-all">
-                        huynhmaithienan.2005@gmail.com
+                    <a href="mailto:athulcodes49@gmail.com" className="text-[#ffc800] hover:underline font-bold break-all">
+                        athulcodes49@gmail.com
                     </a>
                 </div>
                 <div>
                     <h4 className="text-white font-bold text-lg mb-2 border-b border-white/20 pb-1">1. Terms of Service</h4>
                     <p className="mb-2 text-justify">
-                        <strong>Disclaimer:</strong> ChessWrapped is an independent, open-source hobby project and is <span className="text-[#ffc800]">not affiliated, endorsed, or sponsored by Chess.com</span>.
+                        <strong>Disclaimer:</strong> ChessWrapped is an independent, open-source hobby project and is <span className="text-[#ffc800]">not affiliated, endorsed, or sponsored by Lichess</span>.
                     </p>
                 </div>
                 <div>
@@ -112,7 +112,15 @@ const HeaderModal = ({ contentKey, onClose }: { contentKey: ModalContentKey, onC
 };
 
 // --- 3. MENU ITEM ---
-const MenuItem = ({ href, icon: Icon, label, colorClass, onClick }: any) => (
+interface MenuItemProps {
+    href: string;
+    icon: React.ComponentType<{ size?: number; className?: string }>;
+    label: string;
+    colorClass: string;
+    onClick: () => void;
+}
+
+const MenuItem = ({ href, icon: Icon, label, colorClass, onClick }: MenuItemProps) => (
     <Link
         href={href}
         target="_blank"
@@ -212,7 +220,7 @@ export default function Header() {
                                     className="absolute right-0 top-14 w-60 bg-[#262421] border-4 border-[#3e3c39] rounded-2xl shadow-2xl p-2 z-[60] flex flex-col gap-1"
                                 >
                                     <MenuItem
-                                        href="https://www.chess.com/member/aan_huynh"
+                                        href="https://lichess.org/@/aan_huynh"
                                         icon={UserPlus}
                                         label="Add Friend"
                                         colorClass="bg-[#81b64c]"

@@ -48,7 +48,7 @@ export function analyzeMatches(games: ChessGame[], username: string) {
             date: new Date(game.end_time * 1000).toLocaleDateString(),
             url: game.url,
             timeControl: game.time_class,
-            opponentAvatarUrl: '', // Will be filled by avatarService later
+            opponentAvatarUrl: '',
             fen: game.fen
         };
     });

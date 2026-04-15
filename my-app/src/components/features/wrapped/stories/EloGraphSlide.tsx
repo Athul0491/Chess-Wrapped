@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { TrendingUp, ArrowUp, ArrowDown, Minus } from 'lucide-react';
+import {  ArrowUp, ArrowDown, Minus } from 'lucide-react';
 import { Line } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -82,10 +82,7 @@ export default function EloGraphSlide() {
         return [...modes].sort((a, b) => getLatestRating(b) - getLatestRating(a));
     }, [fullHistory]);
 
-    const getChange = (key: 'Blitz' | 'Rapid' | 'Bullet') => {
-        // @ts-ignore
-        return data.eloChange?.[key] ?? 0;
-    };
+    const getChange = (key: 'Blitz' | 'Rapid' | 'Bullet') => data.eloChange?.[key] ?? 0;
 
     const stats = {
         Blitz: { change: getChange('Blitz') },
@@ -166,7 +163,7 @@ export default function EloGraphSlide() {
 
                 {/* Header */}
                 <motion.div variants={itemVariants} className="w-full flex justify-start items-center px-4 mb-4 z-10">
-                    <div className="w-20 h-20 bg-white rounded-full shadow-lg mr-3 flex-shrink-0">
+                    <div className="w-20 h-20 bg-white rounded-full shadow-lg mr-3 flexshrink-0">
                         <img
                             src={data.avatarUrl}
                             alt={data.username}
@@ -181,7 +178,6 @@ export default function EloGraphSlide() {
                 {/* Peak ELO Display */}
                 <motion.div variants={itemVariants} className="flex flex-col items-center justify-center py-3 z-10">
                     <span className="text-7xl font-black text-white leading-none drop-shadow-xl">
-                        {/* @ts-ignore */}
                         {data.peakElo || 0}
                     </span>
                     <span className="text-[#989795] font-bold text-sm uppercase tracking-widest mt-2">
@@ -193,20 +189,26 @@ export default function EloGraphSlide() {
                 <motion.div variants={itemVariants} className="flex gap-4 mb-3 justify-center z-10">
                     {sortedModes.map((mode, index) => {
                         const deviation = stats[mode].change;
+                        let Icon;
+                        let iconColor;
 
+                        if (deviation > 0) {
+                            Icon = ArrowUp;
+                            iconColor = "text-[#81b64c]";
+                        } else if (deviation < 0) {
+                            Icon = ArrowDown;
+                            iconColor = "text-[#ca3431]";
+                        } else {
+                            Icon = Minus;
+                            iconColor = "text-[#989795]";
+}
                         return (
                             <div key={mode} className="flex flex-col items-center bg-[#262421] px-3 py-2 rounded-lg border border-[#3e3c39]">
                                 <span className="text-[10px] font-bold uppercase mb-1" style={{ color: RANK_COLORS[index] }}>
                                     {mode}
                                 </span>
                                 <div className="flex items-center gap-1 text-white font-bold text-sm">
-                                    {deviation > 0 ? (
-                                        <ArrowUp size={14} className="text-[#81b64c]" />
-                                    ) : deviation < 0 ? (
-                                        <ArrowDown size={14} className="text-[#ca3431]" />
-                                    ) : (
-                                        <Minus size={14} className="text-[#989795]" />
-                                    )}
+                                    <Icon size={14} className={iconColor} />
                                     {Math.abs(deviation)}
                                 </div>
                             </div>

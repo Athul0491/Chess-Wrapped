@@ -1,6 +1,6 @@
 'use client';
 
-import { Clock, Rocket, Zap, Swords, Hourglass } from 'lucide-react';
+import { Hourglass } from 'lucide-react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { useEffect } from 'react';
 import StoryCard from '@/components/ui/Card/StoryCard';
@@ -51,8 +51,8 @@ export default function TotalGamesSlide() {
     const drawPct = ((data.draws / total) * 100).toFixed(1);
     const lossPct = ((data.losses / total) * 100).toFixed(1);
 
-    const winW = parseFloat(winPct) > 0 ? `${Math.max(parseFloat(winPct), 2)}%` : '0%';
-    const drawW = parseFloat(drawPct) > 0 ? `${Math.max(parseFloat(drawPct), 2)}%` : '0%';
+    const winW = Number.parseFloat(winPct) > 0 ? `${Math.max(Number.parseFloat(winPct), 2)}%` : '0%';
+    const drawW = Number.parseFloat(drawPct) > 0 ? `${Math.max(Number.parseFloat(drawPct), 2)}%` : '0%';
 
     // --- 2. CALCULATE VARIANT DATA (SORTED) ---
     const getVariantCount = (name: string) => data.gamesByVariant.find(v => v.name === name)?.count || 0;
@@ -64,7 +64,7 @@ export default function TotalGamesSlide() {
     ];
 
     // Sort descending by count (Largest -> Smallest)
-    const sortedVariants = variants.sort((a, b) => b.count - a.count);
+    const sortedVariants = variants.toSorted((a, b) => b.count - a.count);
 
     const variantTotal = sortedVariants.reduce((sum, v) => sum + v.count, 0) || 1;
 
@@ -78,8 +78,8 @@ export default function TotalGamesSlide() {
     const thirdPct = ((third.count / variantTotal) * 100).toFixed(1);
 
     // Widths
-    const firstW = parseFloat(firstPct) > 0 ? `${Math.max(parseFloat(firstPct), 2)}%` : '0%';
-    const secondW = parseFloat(secondPct) > 0 ? `${Math.max(parseFloat(secondPct), 2)}%` : '0%';
+    const firstW = Number.parseFloat(firstPct) > 0 ? `${Math.max(Number.parseFloat(firstPct), 2)}%` : '0%';
+    const secondW = Number.parseFloat(secondPct) > 0 ? `${Math.max(Number.parseFloat(secondPct), 2)}%` : '0%';
 
     const color1 = RANK_COLORS[0];
     const color2 = RANK_COLORS[1];
@@ -93,7 +93,7 @@ export default function TotalGamesSlide() {
 
                 {/* Header */}
                 <motion.div variants={itemVariants} className="w-full flex justify-start items-center px-4 mb-2 z-10">
-                    <div className="w-20 h-20 bg-white rounded-full shadow-lg mr-3 flex-shrink-0">
+                    <div className="w-20 h-20 bg-white rounded-full shadow-lg mr-3 shrink-0">
                         <img
                             src={data.avatarUrl}
                             alt={data.username}

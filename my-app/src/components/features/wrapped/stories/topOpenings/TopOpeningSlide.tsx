@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Swords, Target } from 'lucide-react';
 import { useRef, useEffect, useState } from 'react';
 import StoryCard from '@/components/ui/Card/StoryCard';
 import { containerVariants, itemVariants } from '@/components/shared/animations';

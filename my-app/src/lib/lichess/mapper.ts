@@ -21,6 +21,9 @@ function parseResult(pgn: string, isWhite: boolean): 'win' | 'loss' | 'draw' {
 
 function normalizeTimeClass(speed: string): ChessGame['time_class'] {
   switch (speed) {
+    case 'ultraBullet':
+      return 'bullet';
+
     case 'bullet':
     case 'blitz':
     case 'rapid':
@@ -52,13 +55,13 @@ export function mapLichessGame(game: LichessGame): ChessGame {
 
     white: {
       username: game.players.white.user?.name || 'anonymous',
-      rating: game.players.white.rating,
+      rating: game.players.white.rating ?? 0,
       result: parseResult(game.pgn, true),
     },
 
     black: {
       username: game.players.black.user?.name || 'anonymous',
-      rating: game.players.black.rating,
+      rating: game.players.black.rating ?? 0,
       result: parseResult(game.pgn, false),
     },
   };

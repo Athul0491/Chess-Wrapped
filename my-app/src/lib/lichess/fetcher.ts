@@ -1,9 +1,10 @@
 import { LichessUser, LichessGame } from './types';
+import { WRAPPED_YEAR } from './constants';
 
 const BASE = 'https://lichess.org/api';
 
 export async function fetchLichessProfile(username: string): Promise<LichessUser> {
-  const res = await fetch(`${BASE}/user/${username}`, {
+  const res = await fetch(`${BASE}/user/${encodeURIComponent(username)}`, {
     headers: { Accept: 'application/json' },
   });
 
@@ -11,12 +12,24 @@ export async function fetchLichessProfile(username: string): Promise<LichessUser
   return res.json();
 }
 
-export async function fetchLichessGames2025(username: string): Promise<LichessGame[]> {
-  const since = new Date('2025-01-01').getTime();
-  const until = new Date('2025-12-31T23:59:59').getTime();
+export async function fetchLichessGamesForYear(
+  username: string,
+  year = WRAPPED_YEAR
+): Promise<LichessGame[]> {
+  const since = Date.UTC(year, 0, 1);
+  const until = Date.UTC(year, 11, 31, 23, 59, 59);
+  const params = new URLSearchParams({
+    since: String(since),
+    until: String(until),
+    rated: 'true',
+    pgnInJson: 'true',
+    clocks: 'true',
+    opening: 'true',
+    perfType: 'bullet,blitz,rapid,classical',
+  });
 
   const res = await fetch(
-    `${BASE}/games/user/${username}?since=${since}&until=${until}&rated=true&pgnInJson=true`,
+    `${BASE}/games/user/${encodeURIComponent(username)}?${params.toString()}`,
     { headers: { Accept: 'application/x-ndjson' } }
   );
 
@@ -27,21 +40,5 @@ export async function fetchLichessGames2025(username: string): Promise<LichessGa
   return text
     .split('\n')
     .filter(Boolean)
-    .map(line => JSON.parse(line));
-}
-
-/* 🔥 NEW: optional account fetch */
-export async function fetchLichessAccount() {
-  const token = process.env.LICHESS_TOKEN;
-  if (!token) return null;
-
-  const res = await fetch(`${BASE}/account`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-    },
-  });
-
-  if (!res.ok) return null;
-  return res.json();
+    .map(line => JSON.parse(line) as LichessGame);
 }

@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 
-type AsyncFunction = (...args: any[]) => Promise<any>;
+type AsyncFunction<TArgs extends unknown[], TResult> = (...args: TArgs) => Promise<TResult>;
 
 interface UseRateLimitOptions {
     delayMs?: number;
@@ -14,8 +14,8 @@ interface UseRateLimitOptions {
  * @param fn Function to rate limit
  * @param options Configuration options
  */
-export function useRateLimit(
-    fn: AsyncFunction,
+export function useRateLimit<TArgs extends unknown[], TResult>(
+    fn: AsyncFunction<TArgs, TResult>,
     options: UseRateLimitOptions = {}
 ) {
     const { delayMs = 2000, maxAttempts = 5 } = options;
@@ -24,7 +24,7 @@ export function useRateLimit(
     const attemptCountRef = useRef<number>(0);
     const resetTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
-    return async (...args: any[]) => {
+    return async (...args: TArgs) => {
         const now = Date.now();
         const timeSinceLastCall = now - lastCallRef.current;
 

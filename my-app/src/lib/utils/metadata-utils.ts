@@ -13,10 +13,10 @@ export function generateWrappedMetadata(
 
     return {
         title: `${safeUsername}'s ${year} Chess Wrapped`,
-        description: `Check out ${safeUsername}'s chess stats for the year ${year}!`,
+        description: `Check out ${safeUsername}'s Lichess stats for ${year}!`,
         openGraph: {
             title: `${safeUsername}'s Chess Wrapped`,
-            description: `Check out my ${year} chess journey!`,
+            description: `Check out my ${year} Lichess journey!`,
             images: ['/og-image.jpg'],
             type: 'website',
             siteName: 'Chess Wrapped',
@@ -24,7 +24,7 @@ export function generateWrappedMetadata(
         twitter: {
             card: 'summary_large_image',
             title: `${safeUsername}'s Chess Wrapped`,
-            description: `My ${year} chess stats`,
+            description: `My ${year} Lichess stats`,
             images: ['/og-image.jpg'],
         },
         robots: {
@@ -40,12 +40,12 @@ export function generateWrappedMetadata(
 export function generateDefaultMetadata(): Metadata {
     return {
         title: 'Chess Wrapped 2025',
-        description: 'Visualize your year in chess. Artistically.',
-        keywords: ['chess', 'chess.com', 'wrapped', 'statistics', 'analytics', 'chess stats'],
+        description: 'Visualize your year on Lichess. Artistically.',
+        keywords: ['chess', 'lichess', 'wrapped', 'statistics', 'analytics', 'chess stats'],
         authors: [{ name: 'Chess Wrapped' }],
         openGraph: {
             title: 'Chess Wrapped',
-            description: 'Your year in chess, wrapped beautifully.',
+            description: 'Your year on Lichess, wrapped beautifully.',
             images: ['/og-image.jpg'],
             type: 'website',
             siteName: 'Chess Wrapped',
@@ -53,7 +53,7 @@ export function generateDefaultMetadata(): Metadata {
         twitter: {
             card: 'summary_large_image',
             title: 'Chess Wrapped',
-            description: 'Your year in chess, wrapped beautifully.',
+            description: 'Your year on Lichess, wrapped beautifully.',
             images: ['/og-image.jpg'],
         },
         icons: {

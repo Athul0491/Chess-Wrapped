@@ -13,7 +13,7 @@ export default function SlideHeader({ avatarUrl, username, title, subtitle }: Sl
         <motion.div variants={itemVariants} className="w-full flex flex-col items-center px-4 mb-4 z-10">
             {/* Avatar + Title Row */}
             <div className="flex items-center justify-center w-full mb-2">
-                <div className="bg-white rounded-full shadow-lg mr-3 flex-shrink-0">
+                <div className="bg-white rounded-full shadow-lg mr-3 shrink-0">
                     <img
                         src={avatarUrl}
                         alt={username}

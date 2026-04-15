@@ -1,14 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Hourglass, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import StoryCard from '@/components/ui/Card/StoryCard';
 import { containerVariants, itemVariants } from '@/components/shared/animations';
 import { CONTAINERS } from '@/components/shared/styles';
 import { useChessStats } from '@/context/ChessContext';
 import SlideHeader from './shared/SlideHeader';
-
-const defaultAvatar = 'https://www.chess.com/bundles/web/images/user-image.svg';
 
 export default function GameLengthSlide() {
     const { stats: data } = useChessStats();

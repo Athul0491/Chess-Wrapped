@@ -1,12 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Users, Heart, Swords, Trophy, Crown } from 'lucide-react';
+import { Crown } from 'lucide-react';
 import { useRef, useEffect, useState } from 'react';
 import StoryCard from '@/components/ui/Card/StoryCard';
 import { containerVariants, itemVariants } from '@/components/shared/animations';
-import { CONTAINERS, TYPOGRAPHY } from '@/components/shared/styles';
+import { CONTAINERS } from '@/components/shared/styles';
 import { useChessStats } from '@/context/ChessContext';
+import { FriendStats } from '@/types';
 
 const AutoFitText = ({ text, className = "" }: { text: string, className?: string }) => {
     const textRef = useRef<HTMLSpanElement>(null);
@@ -51,12 +52,22 @@ const AutoFitText = ({ text, className = "" }: { text: string, className?: strin
 };
 
 // 👇 Local Podium Component (Replaces imported PodiumAvatar for full control)
-const PodiumItem = ({ friend, rank, color, className, size }: any) => {
+interface PodiumItemProps {
+    friend: FriendStats;
+    rank: number;
+    color: string;
+    className: string;
+    size: number;
+}
+
+const PodiumItem = ({ friend, rank, color, className, size }: PodiumItemProps) => {
+    const heightMatch = /h-\[(\d+)px\]/.exec(className);
+    const height = heightMatch?.[1];
     return (
         <motion.div
             className={`flex flex-col items-center justify-end rounded-t-lg relative ${className}`}
             initial={{ height: 0 }}
-            animate={{ height: className.match(/h-\[(\d+)px\]/)?.[1] + 'px' || '100%' }}
+            animate={{ height: height ? `${height}px` : '100%' }}
             transition={{ duration: 0.8, delay: 0.2 + (rank * 0.1), type: 'spring' }}
         >
             {/* Crown for Rank 1 */}
@@ -69,11 +80,11 @@ const PodiumItem = ({ friend, rank, color, className, size }: any) => {
             {/* Avatar */}
             <div className="relative mb-2">
                 <img
-                    src={`https://www.chess.com/bundles/web/images/user-image.svg`}
+                    src={friend.avatarUrl || '/default-avatar.svg'}
                     alt={friend.username}
                     style={{ width: size, height: size, borderColor: color }}
                     className="rounded-full object-cover border-4 shadow-lg bg-[#262421]"
-                    onError={(e) => { (e.target as HTMLImageElement).src = "https://www.chess.com/bundles/web/images/user-image.svg"; }}
+                    onError={(e) => { (e.target as HTMLImageElement).src = '/default-avatar.svg'; }}
                 />
                 <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-[#262421] text-white text-[10px] font-bold px-2 py-0.5 rounded-full border border-[#3e3c39] shadow-sm">
                     #{rank}
@@ -119,7 +130,7 @@ export default function FriendsSlide() {
                 <motion.div variants={itemVariants} className="w-full flex justify-start items-center px-4 mb-2 z-10">
                     <div className="p-1 bg-white rounded-full shadow-lg mr-3">
                         <img
-                            src={`https://www.chess.com/bundles/web/images/user-image.svg`}
+                            src={data.avatarUrl || '/default-avatar.svg'}
                             alt={data.username}
                             className="w-12 h-12 rounded-full object-cover border-2 border-[#81b64c]"
                         />
@@ -184,10 +195,10 @@ export default function FriendsSlide() {
                                     <span className="text-[#989795] font-black text-xs w-5 text-center shrink-0">#{idx + 4}</span>
 
                                     <img
-                                        src={`https://www.chess.com/bundles/web/images/user-image.svg`}
+                                        src={friend.avatarUrl || '/default-avatar.svg'}
                                         alt={friend.username}
                                         className="w-8 h-8 rounded-full border border-[#3e3c39] object-cover bg-black/20 shrink-0"
-                                        onError={(e) => { (e.target as HTMLImageElement).src = "https://www.chess.com/bundles/web/images/user-image.svg"; }}
+                                        onError={(e) => { (e.target as HTMLImageElement).src = '/default-avatar.svg'; }}
                                     />
 
                                     {/* Name with scaling */}

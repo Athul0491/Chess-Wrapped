@@ -6,7 +6,7 @@
  * Sanitize username to prevent XSS attacks
  * - Remove HTML tags
  * - Remove script tags
- * - Limit to alphanumeric, hyphen, underscore
+ * - Limit to Lichess username characters
  */
 export function sanitizeUsername(username: string): string {
     if (!username) return '';
@@ -14,22 +14,20 @@ export function sanitizeUsername(username: string): string {
     // Remove any HTML tags
     const withoutTags = username.replace(/<[^>]*>/g, '');
 
-    // Chess.com usernames are alphanumeric + hyphen/underscore
     const sanitized = withoutTags.replace(/[^a-zA-Z0-9_-]/g, '');
 
-    // Limit length to Chess.com's max username length
-    return sanitized.slice(0, 50);
+    return sanitized.slice(0, 30);
 }
 
 /**
- * Validate username format against Chess.com rules
- * - 3-25 characters
+ * Validate username format against Lichess rules
+ * - 2-30 characters
  * - Letters, numbers, hyphen, underscore only
  */
 export function isValidUsername(username: string): boolean {
     if (!username) return false;
 
-    const usernameRegex = /^[a-zA-Z0-9_-]{3,25}$/;
+    const usernameRegex = /^[a-zA-Z0-9_-]{2,30}$/;
     return usernameRegex.test(username);
 }
 

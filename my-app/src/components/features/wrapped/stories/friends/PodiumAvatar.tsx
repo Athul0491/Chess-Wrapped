@@ -21,7 +21,7 @@ export default function PodiumAvatar({ friend, rank, color, className, size }: P
         >
             {/* Rank Badge (Lifted above the bar with -top-4 and standardized padding) */}
             <div
-                className="absolute -top-4 p-2 rounded-full border-[4px] border-[#262421] bg-[#262421] shadow-xl z-20"
+                className="absolute -top-4 p-2 rounded-full border-4 border-[#262421] bg-[#262421] shadow-xl z-20"
                 style={{ color }}
             >
                 <Trophy size={18} fill="currentColor" />
@@ -31,9 +31,9 @@ export default function PodiumAvatar({ friend, rank, color, className, size }: P
             <img
                 src={friend.avatarUrl}
                 alt={friend.username}
-                className="rounded-full border-[4px] object-cover shadow-xl bg-[#262421] z-10 mt-8"
+                className="rounded-full border-4 object-cover shadow-xl bg-[#262421] z-10 mt-8"
                 style={{ width: size, height: size, borderColor: color }}
-                onError={(e) => { (e.target as HTMLImageElement).src = "https://www.chess.com/bundles/web/images/user-image.svg"; }}
+                onError={(e) => { (e.target as HTMLImageElement).src = '/default-avatar.svg'; }}
             />
 
             {/* Username (Full name assumed from previous context) */}

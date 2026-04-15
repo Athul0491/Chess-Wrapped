@@ -12,7 +12,7 @@ export function NoGamesState({ username }: NoGamesStateProps) {
                 No Games Found
             </h1>
             <p className="text-[#989795] mb-8 max-w-md">
-                We couldn't find any games for <strong>{username}</strong> in 2025.
+                We could not find any rated standard games for <strong>{username}</strong> in 2025.
                 <br />
                 Are you sure the username is correct and they have played this year?
             </p>

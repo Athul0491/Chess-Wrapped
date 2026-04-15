@@ -50,7 +50,7 @@ export default function Carousel() {
         { id: 'game_length', component: <GameLengthSlide /> },
         { id: 'friends', component: <FriendsSlide /> },
         { id: 'impressive', component: <ImpressiveMatchesSlide />, condition: () => data.impressiveMatches.length > 0 },
-        { id: 'end', component: <EndSlide onReset={() => window.location.reload()} /> },
+        { id: 'end', component: <EndSlide /> },
     ];
 
     const slides = allSlides.filter(slide => slide.condition ? slide.condition() : true);

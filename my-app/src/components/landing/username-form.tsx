@@ -97,7 +97,7 @@ export function UsernameForm({
                             exit={{ opacity: 0 }}
                             className="text-[#ffffff] text-1xl"
                         >
-                            (type your chess.com username!)
+                            (type your Lichess username!)
                         </motion.p>
                     )}
                 </AnimatePresence>

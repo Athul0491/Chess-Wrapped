@@ -5,10 +5,10 @@
 export const ERROR_MESSAGES = {
     VALIDATION: {
         USERNAME_REQUIRED: 'Username is required',
-        USERNAME_INVALID_FORMAT: 'Invalid username format. Use 3-25 characters (letters, numbers, _, -)',
-        USERNAME_TOO_SHORT: 'Username must be at least 3 characters',
-        USERNAME_TOO_LONG: 'Username must be 25 characters or less',
-        USER_NOT_FOUND: 'User not found on Chess.com!',
+        USERNAME_INVALID_FORMAT: 'Invalid username format. Use 2-30 characters (letters, numbers, _, -)',
+        USERNAME_TOO_SHORT: 'Username must be at least 2 characters',
+        USERNAME_TOO_LONG: 'Username must be 30 characters or less',
+        USER_NOT_FOUND: 'User not found on Lichess!',
         NO_GAMES_FOUND: (year: number) => `No games found for ${year}!`,
         API_ERROR: 'API Connection Error',
         NETWORK_ERROR: 'Network error. Please try again.',

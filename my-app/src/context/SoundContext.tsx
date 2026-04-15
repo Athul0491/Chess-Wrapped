@@ -11,18 +11,14 @@ interface SoundContextType {
 const SoundContext = createContext<SoundContextType | undefined>(undefined);
 
 export function SoundProvider({ children }: { children: React.ReactNode }) {
-    const [isMuted, setIsMuted] = useState(false);
+    const [isMuted, setIsMuted] = useState<boolean>(() => {
+        if (typeof window === 'undefined') return false;
+        const stored = localStorage.getItem('lichess_wrapped_muted');
+        return stored ? Boolean(JSON.parse(stored)) : false;
+    });
 
     // 👇 Keep track of all currently playing audio elements
     const activeAudios = useRef<Set<HTMLAudioElement>>(new Set());
-
-    useEffect(() => {
-        const stored = localStorage.getItem('chess_wrapped_muted');
-        if (stored) {
-            const muted = JSON.parse(stored);
-            setIsMuted(muted);
-        }
-    }, []);
 
     // 👇 When isMuted changes, update ALL active sounds immediately
     useEffect(() => {
@@ -36,7 +32,7 @@ export function SoundProvider({ children }: { children: React.ReactNode }) {
     const toggleMute = () => {
         setIsMuted(prev => {
             const newState = !prev;
-            localStorage.setItem('chess_wrapped_muted', JSON.stringify(newState));
+            localStorage.setItem('lichess_wrapped_muted', JSON.stringify(newState));
             return newState;
         });
     };

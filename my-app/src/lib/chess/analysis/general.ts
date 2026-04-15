@@ -86,7 +86,6 @@ export function analyzeGeneral(games: ChessGame[], username: string) {
     const timeStats = analyzeTime(games);
     const variantStats = analyzeVariants(games);
     const highlights = highlightTracker.getHighlights();
-    console.log(timeStats.totalHours);
     // Aggregate and return results
     return {
         totalGames: games.length,

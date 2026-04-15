@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Default chess avatar">
+  <rect width="128" height="128" rx="24" fill="#262421"/>
+  <circle cx="64" cy="44" r="22" fill="#81b64c"/>
+  <path d="M28 110c4-24 18-38 36-38s32 14 36 38" fill="#81b64c"/>
+  <path d="M48 38h32v12H48z" fill="#ffc800"/>
+  <path d="M58 26h12v36H58z" fill="#ffc800"/>
+</svg>

@@ -1,14 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Crown, Swords, Skull, ExternalLink } from 'lucide-react';
+import { Crown, Swords, ExternalLink } from 'lucide-react';
 import StoryCard from '@/components/ui/Card/StoryCard';
 import { containerVariants, itemVariants } from '@/components/shared/animations';
 import { CONTAINERS } from '@/components/shared/styles';
 import { useChessStats } from '@/context/ChessContext';
 import SlideHeader from './shared/SlideHeader';
 
-const defaultAvatar = 'https://www.chess.com/bundles/web/images/user-image.svg';
+const defaultAvatar = '/default-avatar.svg';
 
 export default function ImpressiveMatchesSlide() {
     const { stats: data } = useChessStats();
@@ -51,7 +51,7 @@ export default function ImpressiveMatchesSlide() {
                                 className="w-full bg-[#262421] border-2 border-[#3e3c39] rounded-2xl p-3 flex flex-col items-center shadow-lg relative overflow-hidden group hover:border-[#81b64c] transition-colors"
                             >
                                 {/* Splatter Effect */}
-                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent pointer-events-none" />
+                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent pointer-events-none" />
 
                                 <div className="flex items-center justify-between w-full relative z-10 gap-2">
 

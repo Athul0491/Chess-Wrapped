@@ -2,16 +2,16 @@
 
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { Github, MessageSquare, Heart, Trophy, Zap, Target, Home, Instagram, Coffee, Star } from 'lucide-react';
+import { Code2, MessageSquare, Home, AtSign, Coffee, Star } from 'lucide-react';
 import StoryCard from '@/components/ui/Card/StoryCard';
 import { containerVariants, itemVariants } from '@/components/shared/animations';
 import { CONTAINERS, TYPOGRAPHY } from '@/components/shared/styles';
 import { useChessStats } from '@/context/ChessContext';
 
-const defaultAvatar = 'https://www.chess.com/bundles/web/images/user-image.svg';
+const defaultAvatar = '/default-avatar.svg';
 
 
-export default function EndSlide({ onReset }: { onReset: () => void }) {
+export default function EndSlide() {
     const router = useRouter();
     const { stats: data } = useChessStats();
 
@@ -53,7 +53,7 @@ export default function EndSlide({ onReset }: { onReset: () => void }) {
                     <motion.div variants={itemVariants} className="w-full">
                         <button
                             onClick={() => window.open('https://forms.gle/Eweg1RtYs9is9p6x5', '_blank')}
-                            className="w-full py-3.5 bg-[#81b64c] hover:bg-[#72a341] text-white font-black uppercase rounded-2xl shadow-[0_4px_0_#457524] active:shadow-none active:translate-y-[4px] transition-all flex items-center justify-center gap-2 border-2 border-[#81b64c] group relative overflow-hidden"
+                            className="w-full py-3.5 bg-[#81b64c] hover:bg-[#72a341] text-white font-black uppercase rounded-2xl shadow-[0_4px_0_#457524] active:shadow-none active:translate-y-1 transition-all flex items-center justify-center gap-2 border-2 border-[#81b64c] group relative overflow-hidden"
                         >
                             <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                             <MessageSquare size={22} className="group-hover:rotate-12 transition-transform" fill="currentColor" />
@@ -73,26 +73,26 @@ export default function EndSlide({ onReset }: { onReset: () => void }) {
                         {/* Buy Me a Coffee */}
                         <motion.div variants={itemVariants}>
                             <a
-                                href="https://buymeacoffee.com/ryan.h"
+                                href="https://buymeacoffee.com/athult"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-full py-3 bg-[#FFDD00] hover:bg-[#FFEA00] text-[#302e2b] font-black text-xs uppercase rounded-xl shadow-[0_4px_0_#c7a008] active:shadow-none active:translate-y-[4px] transition-all flex flex-col items-center justify-center gap-1 border-2 border-[#FFDD00] h-full"
+                                className="w-full py-3 bg-[#FFDD00] hover:bg-[#FFEA00] text-[#302e2b] font-black text-xs uppercase rounded-xl shadow-[0_4px_0_#c7a008] active:shadow-none active:translate-y-1 transition-all flex flex-col items-center justify-center gap-1 border-2 border-[#FFDD00] h-full"
                             >
                                 <Coffee size={20} className="text-[#302e2b]" strokeWidth={2.5} />
                                 <span>Buy Coffee</span>
                             </a>
                         </motion.div>
 
-                        {/* Instagram (Solid Color) */}
+                        {/* X / Twitter */}
                         <motion.div variants={itemVariants}>
                             <a
-                                href="https://www.instagram.com/huynhmaithienan/"
+                                href="https://x.com/Athul0491"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-full py-3 bg-[#E1306C] hover:opacity-90 text-white font-black text-xs uppercase rounded-xl shadow-[0_4px_0_#be1e4e] active:shadow-none active:translate-y-[4px] transition-all flex flex-col items-center justify-center gap-1 border-2 border-[#E1306C] h-full relative"
+                                className="w-full py-3 bg-[#111111] hover:opacity-90 text-white font-black text-xs uppercase rounded-xl shadow-[0_4px_0_#000000] active:shadow-none active:translate-y-1 transition-all flex flex-col items-center justify-center gap-1 border-2 border-[#111111] h-full relative"
                             >
-                                <Instagram size={20} className="text-white" strokeWidth={2.5} />
-                                <span>Update News</span>
+                                <AtSign size={20} className="text-white" strokeWidth={2.5} />
+                                <span>Follow on X</span>
                             </a>
                         </motion.div>
                     </div>
@@ -100,12 +100,12 @@ export default function EndSlide({ onReset }: { onReset: () => void }) {
                     {/* 3. GitHub (Full Width) */}
                     <motion.div variants={itemVariants} className="w-full mt-1">
                         <a
-                            href="https://github.com/huynhmaithienan/ChessWrapped"
+                            href="https://github.com/Athul0491/Chess-Wrapped"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-full py-3 bg-[#262421] hover:bg-[#302e2b] text-[#989795] hover:text-white font-bold text-xs rounded-xl border-2 border-[#3e3c39] flex items-center justify-center gap-2 transition-all hover:border-[#ffc800] group"
                         >
-                            <Github size={18} className="group-hover:text-white transition-colors" />
+                            <Code2 size={18} className="group-hover:text-white transition-colors" />
                             <span>Star on GitHub</span>
                             <Star size={14} className="text-[#ffc800] fill-[#ffc800] group-hover:scale-110 transition-transform" />
                         </a>

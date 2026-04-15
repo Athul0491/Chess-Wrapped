@@ -7,6 +7,7 @@ import { NoGamesState } from '@/components/wrapped/no-games-state';
 import { generateWrappedMetadata } from '@/lib/utils/metadata-utils';
 import { validateAndSanitizeUsername } from '@/lib/utils/security-utils';
 import { logError } from '@/lib/utils/env-utils';
+import { UserData } from '@/types';
 
 interface PageProps {
     params: Promise<{ username: string }>;
@@ -23,28 +24,23 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function UserWrappedPage({ params }: PageProps) {
     const resolvedParams = await params;
     const rawUsername = decodeURIComponent(resolvedParams.username);
+    const username = validateAndSanitizeUsername(rawUsername);
+    let stats: UserData;
 
     try {
-        // Sanitize and validate username
-        const username = validateAndSanitizeUsername(rawUsername);
-
-        // Generate stats
-        const stats = await generateWrappedStats(username, 'lichess');
-
-        // Check for empty stats
-        if (!stats || stats.totalGames === 0) {
-            return <NoGamesState username={username} />;
-        }
-
-        // Success - show wrapped
-        return (
-            <ChessProvider stats={stats}>
-                <Carousel />
-            </ChessProvider>
-        );
+        stats = await generateWrappedStats(username);
     } catch (error) {
-        // Production-safe error logging
         logError('Error generating wrapped', error);
         notFound();
     }
+
+    if (!stats || stats.totalGames === 0) {
+        return <NoGamesState username={username} />;
+    }
+
+    return (
+        <ChessProvider stats={stats}>
+            <Carousel />
+        </ChessProvider>
+    );
 }

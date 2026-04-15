@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Flame, Heart, Swords, Trophy, Flag } from 'lucide-react';
+import { Flame, Flag } from 'lucide-react';
 import StoryCard from '@/components/ui/Card/StoryCard';
 import { containerVariants, itemVariants } from '@/components/shared/animations';
 import { CONTAINERS } from '@/components/shared/styles';
@@ -18,7 +18,7 @@ export default function StreakSlide() {
 
                 {/* Header */}
                 <motion.div variants={itemVariants} className="w-full flex justify-start items-center px-4 mb-6 z-10">
-                    <div className="w-20 h-20 bg-white rounded-full shadow-lg mr-3 flex-shrink-0">
+                    <div className="w-20 h-20 bg-white rounded-full shadow-lg mr-3 shrink-0">
                         <img
                             src={data.avatarUrl}
                             alt={data.username}

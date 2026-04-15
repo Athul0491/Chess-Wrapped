@@ -14,7 +14,7 @@ const nextConfig = {
                             "font-src 'self' fonts.gstatic.com",
                             "img-src 'self' data: https: blob:",
                             "media-src 'self' data:",
-                            "connect-src 'self' api.chess.com lichess.org vitals.vercel-insights.com",
+                            "connect-src 'self' lichess.org vitals.vercel-insights.com",
                             "frame-ancestors 'none'",
                             "base-uri 'self'",
                             "form-action 'self'",
