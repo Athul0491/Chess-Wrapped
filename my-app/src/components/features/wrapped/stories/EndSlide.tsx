@@ -52,7 +52,7 @@ export default function EndSlide() {
                     {/* 1. Main CTA: Feedback */}
                     <motion.div variants={itemVariants} className="w-full">
                         <button
-                            onClick={() => window.open('https://forms.gle/Eweg1RtYs9is9p6x5', '_blank')}
+                            onClick={() => window.open('https://forms.gle/e8nghphTvAJG7SMHA', '_blank')}
                             className="w-full py-3.5 bg-[#81b64c] hover:bg-[#72a341] text-white font-black uppercase rounded-2xl shadow-[0_4px_0_#457524] active:shadow-none active:translate-y-1 transition-all flex items-center justify-center gap-2 border-2 border-[#81b64c] group relative overflow-hidden"
                         >
                             <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />

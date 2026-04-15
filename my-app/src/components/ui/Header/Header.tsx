@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Shield, Lightbulb, Zap, Mail, UserPlus, Menu, Instagram, ExternalLink, Star, Github, Volume2, VolumeX, ChessKing } from 'lucide-react';
+import { X, Shield, Lightbulb, Zap, Mail, UserPlus, Menu, AtSign, ExternalLink, Star, Code2, Volume2, VolumeX, ChessKing } from 'lucide-react';
 import { useSound } from '@/context/SoundContext';
 
 // --- 1. MODAL CONTENT DEFINITIONS ---
@@ -227,24 +227,24 @@ export default function Header() {
                                         onClick={() => setMenuOpen(false)}
                                     />
                                     <MenuItem
-                                        href="https://forms.gle/Eweg1RtYs9is9p6x5"
+                                        href="https://forms.gle/e8nghphTvAJG7SMHA"
                                         icon={Star}
                                         label="Feedback"
                                         colorClass="bg-[#ffc800] text-[#302e2b]"
                                         onClick={() => setMenuOpen(false)}
                                     />
                                     <MenuItem
-                                        href="https://github.com/huynhmaithienan/Chess-wrapped"
-                                        icon={Github}
+                                        href="https://github.com/Athul0491/Chess-wrapped"
+                                        icon={Code2}
                                         label="GitHub"
                                         colorClass="bg-[#3e3c39]"
                                         onClick={() => setMenuOpen(false)}
                                     />
                                     <MenuItem
-                                        href="https://www.instagram.com/huynhmaithienan/"
-                                        icon={Instagram}
-                                        label="Instagram"
-                                        colorClass="bg-gradient-to-tr from-[#833ab4] via-[#fd1d1d] to-[#fcb045]"
+                                        href="https://x.com/Athul0491"
+                                        icon={AtSign}
+                                        label="X / Twitter"
+                                        colorClass="bg-[#111111]"
                                         onClick={() => setMenuOpen(false)}
                                     />
                                 </motion.div>
