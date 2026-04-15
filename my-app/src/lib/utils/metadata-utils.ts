@@ -1,6 +1,18 @@
 import { Metadata } from 'next';
 import { sanitizeUsername, escapeHtml } from './security-utils';
 
+function getMetadataBase(): URL {
+    if (process.env.NEXT_PUBLIC_URL) {
+        return new URL(process.env.NEXT_PUBLIC_URL);
+    }
+
+    if (process.env.VERCEL_URL) {
+        return new URL(`https://${process.env.VERCEL_URL}`);
+    }
+
+    return new URL('http://localhost:3000');
+}
+
 /**
  * Generate metadata for wrapped pages
  */
@@ -65,7 +77,7 @@ export function generateDefaultMetadata(): Metadata {
             index: true,
             follow: true,
         },
-        metadataBase: new URL(process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'),
+        metadataBase: getMetadataBase(),
     };
 }
 
