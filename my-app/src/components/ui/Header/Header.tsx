@@ -220,7 +220,7 @@ export default function Header() {
                                     className="absolute right-0 top-14 w-60 bg-[#262421] border-4 border-[#3e3c39] rounded-2xl shadow-2xl p-2 z-[60] flex flex-col gap-1"
                                 >
                                     <MenuItem
-                                        href="https://lichess.org/@/aan_huynh"
+                                        href="https://lichess.org/@/SmackMyKnight"
                                         icon={UserPlus}
                                         label="Add Friend"
                                         colorClass="bg-[#81b64c]"
