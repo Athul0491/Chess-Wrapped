@@ -1,7 +1,7 @@
 # ChessWrapped 2025
 https://chesswrap.vercel.app/
 
-**A "Spotify Wrapped" style experience for Chess.com users, built with Next.js and the Chess.com Public API.**
+**A "Spotify Wrapped" style experience for Lichess.org users, built with Next.js and the Lichess Public API.**
 
 ![ChessWrapped Preview](my-app/public/app-image/homepage.png)
 ![ChessWrapped Preview](my-app/public/app-image/how-it-work.png)
@@ -14,16 +14,16 @@ https://chesswrap.vercel.app/
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS
 - **Animations:** Framer Motion
-- **Data Source:** [Chess.com Public API](https://www.chess.com/news/view/published-data-api)
+- **Data Source:** [Lichess.org Public API](https://lichess.org/api)
 - **Icons:** Lucide React
 
 ## ⚙️ Architecture & Data Flow
 
 1. **User Input:** The user enters their username on the landing page (`app/page.tsx`).
-2. **Validation:** The app pings the Chess.com API to verify the user exists and has archives for 2025.
+2. **Validation:** The app pings the Lichess API to verify the user exists and has archives for 2025.
 3. **Data Fetching:**
     - On success, the user is routed to `/wrapped/[username]`.
-    - The `ChessContext` triggers a fetch for all monthly archives (JSON).
+    - The app fetches games using the Lichess API (NDJSON stream / archives).
     - Games are parsed to calculate Total Games, Win/Loss/Draw ratios, and specific Opening names.
 4. **Visualization:**
     - Data is passed into the `<Carousel />` component.
@@ -31,8 +31,6 @@ https://chesswrap.vercel.app/
     - Global Audio is managed in `layout.tsx` to persist across route changes.
 
 ---
-
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
@@ -53,17 +51,16 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## Inspiration
 
-To learn more about Next.js, take a look at the following resources:
+Inspired by:
+chesswrap.me (Chess.com Wrapped)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Support
+If you liked it:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+⭐ Star the repo
 
-## Deploy on Vercel
+[☕ Buy me a coffee](https://buymeacoffee.com/athult)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[♟️ Challenge me to a game](https://lichess.org/@/SmackMyKnight)
